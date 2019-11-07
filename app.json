@@ -1,0 +1,17 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "description": "",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "sandbox-react-ts",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

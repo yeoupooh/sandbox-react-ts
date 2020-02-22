@@ -7,7 +7,7 @@ const Hello = props => {
   var result = calc.doMath(1, 2);
   return (
     <div className="App">
-      <h1>Hello {props.name}</h1>
+      <h1>Hello1 {props.name}</h1>
       <p>result: {result}</p>
     </div>
   );

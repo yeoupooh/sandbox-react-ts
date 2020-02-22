@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ThemeProvider } from "@material-ui/core/styles";
+// import { ThemeProvider } from "@material-ui/core/styles";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -14,7 +14,38 @@ import Box from "@material-ui/core/Box";
 
 import Hello from "./components/Hello";
 import ImagePanel from "./components/ImagePanel";
+import HttpClientPanel from "./components/HttpClientPanel";
 // import DeepChild from "./components/DeepChild";
+import HoursPanel from "./components/HoursPanel";
+import UserFeedbackPanel from "./components/UserFeedbackPanel";
+import CryptorPanel from "./components/CryptorPanel";
+
+const tabs = [
+  {
+    name: "Hello",
+    component: <Hello />
+  },
+  {
+    name: "HttpClient",
+    component: <HttpClientPanel />
+  },
+  {
+    name: "Image",
+    component: <ImagePanel />
+  },
+  {
+    name: "Cryptor",
+    component: <CryptorPanel />
+  },
+  {
+    name: "Hours",
+    component: <HoursPanel />
+  },
+  {
+    name: "User Feedback",
+    component: <UserFeedbackPanel />
+  }
+];
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -60,9 +91,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const theme = {
-  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
-};
+// const theme = {
+//   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
+// };
 
 export default function Main() {
   const classes = useStyles({});
@@ -94,9 +125,9 @@ export default function Main() {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="Hello" {...a11yProps(0)} />
-          <Tab label="Image" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          {tabs.map((tab, index) => (
+            <Tab label={tab.name} {...a11yProps(index)} />
+          ))}
         </Tabs>
       </AppBar>
       {/* 
@@ -105,15 +136,11 @@ export default function Main() {
        */}
       <Toolbar />
       <Toolbar />
-      <TabPanel value={value} index={0}>
-        <Hello />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <ImagePanel />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
+      {tabs.map((tab, index) => (
+        <TabPanel value={value} index={index}>
+          {tab.component}
+        </TabPanel>
+      ))}
       {/* <ThemeProvider theme={theme}><DeepChild /></ThemeProvider> */}
     </div>
   );
